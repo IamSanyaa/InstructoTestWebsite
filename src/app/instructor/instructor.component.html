@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="bg" fxLayoutAlign="center center" fxFlexFill>
+  <mat-card fxFlex="20">
+    <mat-toolbar class="black" fxLayoutAlign="center center">Login Page</mat-toolbar>
+    <form  [formGroup]="this.instructorsLoginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="5px">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button class="black" mat-raised-button type="submit">Login</button>
+    </form>
+    <p fxLayout="column" fxLayoutAlign="center center">Don't have an account? <span> <a routerLink="/register">Register here!</a></span></p>
+  </mat-card>
+</div>
+
+<app-footer></app-footer>

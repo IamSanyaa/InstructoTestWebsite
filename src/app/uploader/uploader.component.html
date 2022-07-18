@@ -1,0 +1,26 @@
+<!--<app-navbar></app-navbar>-->
+
+
+<div class="dropzone"
+     appDropzone
+     (hovered)="toggleHover($event)"
+     (dropped)="drop($event)"
+     [class.hovering]="isHovering">
+
+  <div class="file">
+    <label class="file-label"></label>
+    <input type="file" multiple (change)="drop($event.target.files)" />
+  </div>
+  <h3>Select file for upload</h3>
+  <p>or drag and drop inside this box</p>
+
+
+</div>
+
+<h3>Uploads</h3>
+
+<mat-grid-list cols="8" [gutterSize]="'10px'">
+  <mat-grid-tile *ngFor="let file of files">
+    <app-upload-task [file]="file"></app-upload-task>
+  </mat-grid-tile>
+</mat-grid-list>

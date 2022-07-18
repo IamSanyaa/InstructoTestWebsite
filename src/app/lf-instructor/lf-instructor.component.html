@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+
+
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-form-field class="example-chip-list">
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(fruit)">
+        {{fruit.name}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Search instructor..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+</div>
+
+
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="100px">
+  <mat-card fxFlex="33.33" fxLayoutAlign="start start">
+    <div fxLayout="column" fxFlex="100">
+      <mat-card-header fxFlex="33.33" fxLayout="column" fxLayoutAlign="center center">
+        <div>
+          <h1>Climbing</h1>
+        </div>
+      </mat-card-header>
+      <mat-card-content fxFlex fxLayout="column" fxLayoutGap="15px">
+        <table mat-table [dataSource]="instructorsList" class="mat-elevation-z8">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{element.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef>Last Name</th>
+            <td mat-cell *matCellDef="let element">{{element.lastName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef>City</th>
+            <td mat-cell *matCellDef="let element">{{element.city}} </td>
+          </ng-container>
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef>Gender</th>
+            <td mat-cell *matCellDef="let element">{{element.gender}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </mat-card-content>
+    </div>
+  </mat-card>
+
+
+    <mat-card fxFlex="33.33" fxLayoutAlign="start start">
+      <div fxLayout="column" fxFlex="100">
+        <mat-card-header fxFlex="33.33" fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <h1>Climbing</h1>
+          </div>
+        </mat-card-header>
+        <mat-card-content fxFlex fxLayout="column" fxLayoutGap="15px">
+          <div fxFlex="40" fxLayout="row">
+            <div fxFlex="50">
+              <div>
+                <span class="large-label">Name</span>
+                &nbsp;
+                <span class="medium-label">.......</span>
+              </div>
+              <div style="margin-top: 5px;">Age</div>
+              <div class="edit-dis-label">.......</div>
+            </div>
+            <div fxFlex="0 100 100%" fxLayoutAlign="start start">
+              <img class="img" src="{{avatar}}" fxFlex="30" />
+            </div>
+          </div>
+          <div fxFlex="60" fxLayout="column" fxLayoutGap="10px" class="data-pair">
+            <div fxFlex>
+              <div fxFlex="50">Profession</div>
+              <div fxFlex="50"><strong>.......</strong></div>
+            </div>
+            <div fxFlex>
+              <div fxFlex="50">City</div>
+              <div fxFlex="50">.......</div>
+            </div>
+            <div fxFlex>
+              <div fxFlex="50">Languages</div>
+              <div fxFlex="50">.......</div>
+            </div>
+            <div fxFlex>
+              <div fxFlex="50">Contacts</div>
+              <div fxFlex="50">.......</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </div>
+    </mat-card>
+
+  </div>
+

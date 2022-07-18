@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+  <div fxFlex="30">
+    <mat-card >
+      <mat-toolbar class="black" fxLayoutAlign="center center">Register</mat-toolbar>
+      <form [formGroup]="this.instructorsForm"  fxLayout="column" fxLayoutGap="5px">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input formControlName="firstName" matInput placeholder="First Name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input formControlName="lastName" matInput placeholder="Last Name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input formControlName="email" matInput placeholder="enter email" required>
+          <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input formControlName="phoneNumber" matInput placeholder="Phone Number" required>
+        </mat-form-field>
+
+        <mat-radio-group fxLayout="column" fxLayoutGap="5px" appearance="fill">
+          <mat-label xFlexAlign="start">Select a gender: </mat-label>
+          <mat-radio-button xFlexAlign="center" value="male">Male</mat-radio-button>
+          <mat-radio-button xFlexAlign="center" value="female">Female</mat-radio-button>
+        </mat-radio-group>
+
+        <button class="black" mat-raised-button type="submit" [disabled]="instructorsForm.invalid" (click)="onSubmit()">Register</button>
+
+      </form>
+    </mat-card>
+  </div>
+
+</div>
+
+
+<app-footer></app-footer>

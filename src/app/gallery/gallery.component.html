@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+
+
+<mat-tab-group fxFlexFill>
+  <mat-tab label="Gallery">
+
+    <form [formGroup]="formUpload">
+      <div fxLayout="column" fxLayoutGap="10px" fxFlex="10">
+        <label>Choose Files</label>
+        <input formControlName="imageUrl" id="input-file-id" multiple type="file" />
+        <button (click)="upload()" type="submit" mat-raised-button color="primary">Upload</button>
+      </div>
+
+
+    </form>
+
+
+    <hr />
+
+
+    <mat-slide-toggle (change)="enableDragDropMode($event)" color="primary">
+      enable Drag & Drop mode
+    </mat-slide-toggle>
+    <br>
+    <mat-card>
+      <mat-grid-list cols="8" rowHeight="4:3" [gutterSize]="'10px'">
+        <div #contenedor cdkDropListGroup>
+          <mat-grid-tile *ngFor="let item of items;let i=index">
+            <!--<div class="drag-index">{{i+1}}</div>-->
+            <div cdkDropList
+                 cdkDropListOrientation="horizontal"
+                 [cdkDropListData]="{item:item,index:i}" (cdkDropListDropped)="drop($event)" [cdkDropListDisabled]="dragDisabled">
+              <div class="inner" cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <img width="100%" height="100%" [src]="item" />
+                <div class="content">
+                  <mat-icon *ngIf="!dragDisabled" (click)="remove(i)">delete</mat-icon>
+                </div>
+              </div>
+            </div>
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
+    </mat-card>
+    <!--{{items|json}}-->
+  </mat-tab>
+  <mat-tab label="Uploader" routerLink="/uploader"> <app-uploader></app-uploader> </mat-tab>
+</mat-tab-group>
+
+
+
+
+<app-footer></app-footer>
